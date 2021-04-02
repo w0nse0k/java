@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- p.50 수정 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="samsungTV" class="kr.mjc.jacob.spring.day1.class02.SamsungTV"/>
+  <bean id="lgTV" class="kr.mjc.jacob.spring.day1.class02.LgTV"/>
+</beans>

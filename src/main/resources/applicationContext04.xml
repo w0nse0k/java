@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- p.71, 82 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="sonySpeaker" class="kr.mjc.jacob.spring.day1.class04.SonySpeaker"/>
+
+  <bean id="appleSpeaker"
+        class="kr.mjc.jacob.spring.day1.class04.AppleSpeaker"/>
+
+  <bean id="samsungTV" class="kr.mjc.jacob.spring.day1.class04.SamsungTV">
+    <constructor-arg ref="sonySpeaker"/>
+  </bean>
+
+  <bean id="lgTV" class="kr.mjc.jacob.spring.day1.class04.LgTV">
+    <property name="speaker" ref="appleSpeaker"/>
+  </bean>
+</beans>
