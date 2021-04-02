@@ -1,5 +1,6 @@
 package kr.mjc.jacob.java.generics;
 
+@SuppressWarnings("all")
 public class GenericTest {
 
   public static void main(String[] args) {

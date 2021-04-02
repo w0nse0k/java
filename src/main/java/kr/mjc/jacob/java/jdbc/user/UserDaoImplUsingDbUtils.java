@@ -65,7 +65,7 @@ public class UserDaoImplUsingDbUtils implements UserDao {
 
   @Override
   public User getUser(int userId) {
-    return dbUtils.get(LOGIN, h, userId);
+    return dbUtils.get(GET_USER, h, userId);
   }
 
   @Override
