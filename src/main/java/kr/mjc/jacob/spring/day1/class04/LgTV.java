@@ -19,7 +19,7 @@ public class LgTV implements TV {
   /**
    * speaker를 주입하는 setter
    */
-  public void setSpeaker(Speaker speaker) {
+  public void setSpeaker(Speaker speaker) { // property speaker
     this.speaker = speaker;
     System.out.println("lgTV setter에서 speaker를 넣었습니다.");
   }

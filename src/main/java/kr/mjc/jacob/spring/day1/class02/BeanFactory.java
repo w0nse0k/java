@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * p45 수정
+ * p.45 수정
  */
 public class BeanFactory {
 

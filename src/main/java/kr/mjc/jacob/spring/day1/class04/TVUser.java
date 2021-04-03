@@ -9,11 +9,12 @@ public class TVUser {
 
     // constructor를 사용해서 sonySpeaker를 넣는다.
     SamsungTV samsungTV = new SamsungTV(sonySpeaker);
-    samsungTV.volumeUp();
 
     // default constructor로 만든 후에 setter를 사용해서 appleSpeaker를 넣는다.
     LgTV lgTV = new LgTV();
     lgTV.setSpeaker(appleSpeaker);
+
+    samsungTV.volumeUp();
     lgTV.volumeDown();
   }
 }

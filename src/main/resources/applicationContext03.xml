@@ -6,5 +6,6 @@
           http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <bean id="samsungTV" class="kr.mjc.jacob.spring.day1.class02.SamsungTV"/>
+
   <bean id="lgTV" class="kr.mjc.jacob.spring.day1.class02.LgTV"/>
 </beans>

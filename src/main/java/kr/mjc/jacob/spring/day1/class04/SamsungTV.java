@@ -7,7 +7,7 @@ import kr.mjc.jacob.spring.day1.class02.TV;
  */
 public class SamsungTV implements TV {
 
-  private Speaker speaker;
+  private final Speaker speaker;
 
   /**
    * speaker를 주입하는 컨스트럭터
