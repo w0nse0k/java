@@ -24,7 +24,7 @@ public class ListOfStudentEx {
 
   public void read() throws Exception {
     try (Scanner sc = new Scanner(
-        new File("src/kr/mjc/jacob/java/collections/homework/students.txt"))) {
+        new File("src/main/resources/students.txt"))) {
 
       while (sc.hasNextLine()) {
         Student student = new Student(sc.nextLine());

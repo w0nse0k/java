@@ -1,7 +1,7 @@
 package kr.mjc.jacob.spring.day1.class02;
 
 /**
- * p.42
+ * p.42 수정
  */
 public interface TV {
 

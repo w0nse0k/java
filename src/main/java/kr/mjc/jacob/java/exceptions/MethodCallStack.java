@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class MethodCallStack {
   public void go() {
-    try (FileReader in = new FileReader("alphabet.txt");
+    try (FileReader in = new FileReader("src/main/resources/alphabet.txt");
          BufferedReader reader = new BufferedReader(in)) {
       String str = reader.readLine();
       System.out.println(str);
