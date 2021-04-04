@@ -4,4 +4,3 @@ build/
 gradle*
 lombok.config
 settings.gradle
-src/main/java/kr/mjc/jacob/java/jdbc/article/
