@@ -16,5 +16,6 @@ dependencies {
 
     // spring에서 필요한 라이브러리들
     implementation 'org.springframework:spring-context:5.+'
+    implementation 'org.springframework:spring-jdbc:5.+'
     implementation 'javax.annotation:javax.annotation-api:1.+'
 }
