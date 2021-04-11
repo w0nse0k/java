@@ -28,11 +28,6 @@ public class UserDaoImpl implements UserDao {
       = "update user set password=sha2(?,256) where userId=? and password=sha2(?,256)";
 
   private DbUtils dbUtils;
-
-  public UserDaoImpl(DbUtils dbUtils) {
-    this.dbUtils = dbUtils;
-  }
-
   private ResultSetHandler<User> h = (rs) -> {
     User user = new User();
     user.setUserId(rs.getInt("userId"));
@@ -40,6 +35,10 @@ public class UserDaoImpl implements UserDao {
     user.setName(rs.getString("name"));
     return user;
   };
+
+  public UserDaoImpl(DbUtils dbUtils) {
+    this.dbUtils = dbUtils;
+  }
 
   @Override
   public List<User> listUsers(int offset, int count) {

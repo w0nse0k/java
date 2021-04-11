@@ -8,6 +8,10 @@ import java.util.List;
  */
 public class PersonEx {
 
+  public static void main(String[] args) {
+    new PersonEx().go();
+  }
+
   /**
    * 로스터에서 checkPerson.test()==true인 person만 출력
    */
@@ -47,9 +51,5 @@ public class PersonEx {
     System.out.println("지메일을 사용하는 사람");
     // 지메일을 사용하는 사람 출력 (lambda expression 간소화)
     printPersons(roster, p -> p.getEmail().endsWith("gmail.com"));
-  }
-
-  public static void main(String[] args) {
-    new PersonEx().go();
   }
 }

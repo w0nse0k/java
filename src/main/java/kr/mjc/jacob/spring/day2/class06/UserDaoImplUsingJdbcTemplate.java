@@ -35,11 +35,11 @@ public class UserDaoImplUsingJdbcTemplate implements UserDao {
       = "update user set password=sha2(?,256) where userId=? and password=sha2(?,256)";
 
   private JdbcTemplate jdbcTemplate;
-
-  @Autowired
-  public UserDaoImplUsingJdbcTemplate(JdbcTemplate jdbcTemplate) {
-    this.jdbcTemplate = jdbcTemplate;
-  }
+  /*
+   * BeanPropertyRowMapper는 고성능 보다는 편리함을 위해 사용한다.
+   * 최상의 성능을 위해서는 RowMapper를 직접 구현한다.
+   */
+  private RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
 
   /*
   private RowMapper<User> rowMapper = (rs, rowNum) -> {
@@ -50,11 +50,10 @@ public class UserDaoImplUsingJdbcTemplate implements UserDao {
     return user;
   };*/
 
-  /*
-   * BeanPropertyRowMapper는 고성능 보다는 편리함을 위해 사용한다.
-   * 최상의 성능을 위해서는 RowMapper를 직접 구현한다.
-   */
-  private RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
+  @Autowired
+  public UserDaoImplUsingJdbcTemplate(JdbcTemplate jdbcTemplate) {
+    this.jdbcTemplate = jdbcTemplate;
+  }
 
   @Override
   public List<User> listUsers(int offset, int count) {

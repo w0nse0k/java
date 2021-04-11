@@ -29,15 +29,6 @@ public class UserDaoImpl implements UserDao {
 
   private static final String UPDATE_PASSWORD
       = "update user set password=sha2(?,256) where userId=? and password=sha2(?,256)";
-
-  private DbUtils dbUtils;
-
-  @Autowired
-  public UserDaoImpl(DbUtils dbUtils) {
-    this.dbUtils = dbUtils;
-    System.out.println("Inject dbUtils into UserDaoImpl using constructor.");
-  }
-
   ResultSetHandler<User> h = (rs) -> {
     User user = new User();
     user.setUserId(rs.getInt("userId"));
@@ -45,6 +36,13 @@ public class UserDaoImpl implements UserDao {
     user.setName(rs.getString("name"));
     return user;
   };
+  private DbUtils dbUtils;
+
+  @Autowired
+  public UserDaoImpl(DbUtils dbUtils) {
+    this.dbUtils = dbUtils;
+    System.out.println("Inject dbUtils into UserDaoImpl using constructor.");
+  }
 
   @Override
   public List<User> listUsers(int offset, int count) {

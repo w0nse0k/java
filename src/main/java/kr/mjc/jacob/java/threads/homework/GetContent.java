@@ -17,6 +17,10 @@ public class GetContent {
       "instagram.com", "netflix.com", "twitter.com", "wikipedia.org",
       "imdb.com"};
 
+  public static void main(String[] args) {
+    new GetContent().come();
+  }
+
   /**
    * 순차 다운로드
    */
@@ -56,9 +60,5 @@ public class GetContent {
       });
     }
     service.shutdown(); // 모든 스레드의 작업을 종료하면 shutdown.
-  }
-
-  public static void main(String[] args) {
-    new GetContent().come();
   }
 }

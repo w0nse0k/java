@@ -26,6 +26,24 @@ public class UserController {
         userDao.getClass().getSimpleName());
   }
 
+  public static void main(String[] args) {
+    ApplicationContext context = new AnnotationConfigApplicationContext(
+        AppConfig.class);
+    UserController userController = context.getBean(UserController.class);
+    System.out.print(
+        "Select method (1:list, 2:get, 3:login, 4:add, 5:updatePassword, 6:updateEmail) : ");
+    try (Scanner scanner = new Scanner(System.in)) {
+      switch (scanner.nextInt()) {
+        case 1 -> userController.list();
+        case 2 -> userController.get();
+        case 3 -> userController.login();
+        case 4 -> userController.add();
+        case 5 -> userController.updatePassword();
+        case 6 -> userController.updateEmail();
+      }
+    }
+  }
+
   public void list() {
     List<User> userList = userDao.listUsers(0, 10);
     for (User user : userList) {
@@ -88,24 +106,6 @@ public class UserController {
     } catch (DataAccessException e) {
       // update()는 키가 중복되면 DuplicateKeyException을 던진다.
       System.err.format("이메일 중복입니다. email=%s\n", email);
-    }
-  }
-
-  public static void main(String[] args) {
-    ApplicationContext context = new AnnotationConfigApplicationContext(
-        AppConfig.class);
-    UserController userController = context.getBean(UserController.class);
-    System.out.print(
-        "Select method (1:list, 2:get, 3:login, 4:add, 5:updatePassword, 6:updateEmail) : ");
-    try (Scanner scanner = new Scanner(System.in)) {
-      switch (scanner.nextInt()) {
-        case 1 -> userController.list();
-        case 2 -> userController.get();
-        case 3 -> userController.login();
-        case 4 -> userController.add();
-        case 5 -> userController.updatePassword();
-        case 6 -> userController.updateEmail();
-      }
     }
   }
 }

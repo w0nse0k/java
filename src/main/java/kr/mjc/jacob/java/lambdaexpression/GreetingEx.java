@@ -1,6 +1,10 @@
 package kr.mjc.jacob.java.lambdaexpression;
 
 public class GreetingEx {
+  public static void main(String[] args) {
+    new GreetingEx().go();
+  }
+
   /**
    * Functional interface Greeting의 greet() 메서드를 수행
    */
@@ -39,9 +43,5 @@ public class GreetingEx {
     // 4. 한국어 인사는 lambda expression 사용
     // Lambda expression은 functional interface 구현체의 메서드 내부만 표현한 것
     sayHello(() -> System.out.println("안녕하세요."));
-  }
-
-  public static void main(String[] args) {
-    new GreetingEx().go();
   }
 }

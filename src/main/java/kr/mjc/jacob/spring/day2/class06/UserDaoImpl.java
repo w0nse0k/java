@@ -41,6 +41,7 @@ public class UserDaoImpl implements UserDao {
   private JdbcTemplate jdbcTemplate;
 
   private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+  private RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
 
   @Autowired
   public UserDaoImpl(JdbcTemplate jdbcTemplate,
@@ -48,8 +49,6 @@ public class UserDaoImpl implements UserDao {
     this.jdbcTemplate = jdbcTemplate;
     this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
   }
-
-  private RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
 
   @Override
   public List<User> listUsers(int offset, int count) {

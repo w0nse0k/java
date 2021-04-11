@@ -40,14 +40,13 @@ public class UserDaoImplUsingNamedParameterJdbcTemplate implements UserDao {
       = "update user set password=sha2(:newPassword,256) where userId=:userId and password=sha2(:password,256)";
 
   private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+  private RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
 
   @Autowired
   public UserDaoImplUsingNamedParameterJdbcTemplate(
       NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
     this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
   }
-
-  private RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
 
   @Override
   public List<User> listUsers(int offset, int count) {
