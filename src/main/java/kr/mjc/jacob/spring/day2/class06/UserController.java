@@ -20,7 +20,7 @@ public class UserController {
   private UserDao userDao;
 
   @Autowired
-  public UserController(@Qualifier("userDao") UserDao userDao) {
+  public UserController(@Qualifier("userDaoImpl") UserDao userDao) {
     this.userDao = userDao;
     System.out.format("userController에 %s 빈를 주입했습니다.\n",
         userDao.getClass().getSimpleName());
@@ -92,20 +92,19 @@ public class UserController {
   }
 
   public static void main(String[] args) {
-    ApplicationContext context =
-        new AnnotationConfigApplicationContext(AppConfig.class);
-    UserController uc = context.getBean(UserController.class);
-
+    ApplicationContext context = new AnnotationConfigApplicationContext(
+        AppConfig.class);
+    UserController userController = context.getBean(UserController.class);
     System.out.print(
         "Select method (1:list, 2:get, 3:login, 4:add, 5:updatePassword, 6:updateEmail) : ");
     try (Scanner scanner = new Scanner(System.in)) {
       switch (scanner.nextInt()) {
-        case 1 -> uc.list();
-        case 2 -> uc.get();
-        case 3 -> uc.login();
-        case 4 -> uc.add();
-        case 5 -> uc.updatePassword();
-        case 6 -> uc.updateEmail();
+        case 1 -> userController.list();
+        case 2 -> userController.get();
+        case 3 -> userController.login();
+        case 4 -> userController.add();
+        case 5 -> userController.updatePassword();
+        case 6 -> userController.updateEmail();
       }
     }
   }

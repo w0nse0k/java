@@ -2,7 +2,6 @@ package kr.mjc.jacob.spring.day1.class03.lifecycle;
 
 import kr.mjc.jacob.spring.day1.class02.SamsungTV;
 import kr.mjc.jacob.spring.day1.class02.TV;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

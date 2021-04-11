@@ -4,11 +4,10 @@ import kr.mjc.jacob.java.jdbc.user.User;
 import kr.mjc.jacob.java.jdbc.user.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -16,22 +15,22 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * namedParameterJdbcTemplate을 사용하는 DAO
+ * jdbcTemplate과 namedParameterJdbcTemplate을 모두 사용하는 DAO
  */
-@Component("userDaoNamed")
-public class UserDaoImplUsingNamedParameterJdbcTemplate implements UserDao {
+@Component("userDaoImpl")
+public class UserDaoImpl implements UserDao {
 
   private static final String LIST_USERS
-      = "select userId, email, name from user order by userId desc limit :offset,:count";
+      = "select userId, email, name from user order by userId desc limit ?,?";
 
   private static final String ADD_USER
       = "insert user(email, password, name) values(:email, sha2(:password,256), :name)";
 
   private static final String LOGIN
-      = "select userId, email, name from user where (email, password) = (:email, sha2(:password,256))";
+      = "select userId, email, name from user where (email, password) = (?, sha2(?,256))";
 
   private static final String GET_USER
-      = "select userId, email, name from user where userId=:userId";
+      = "select userId, email, name from user where userId=?";
 
   private static final String UPDATE_EMAIL
       = "update user set email=:email where userId=:userId";
@@ -39,11 +38,14 @@ public class UserDaoImplUsingNamedParameterJdbcTemplate implements UserDao {
   private static final String UPDATE_PASSWORD
       = "update user set password=sha2(:newPassword,256) where userId=:userId and password=sha2(:password,256)";
 
+  private JdbcTemplate jdbcTemplate;
+
   private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
   @Autowired
-  public UserDaoImplUsingNamedParameterJdbcTemplate(
-      NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+  public UserDaoImpl(JdbcTemplate jdbcTemplate,
+                     NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    this.jdbcTemplate = jdbcTemplate;
     this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
   }
 
@@ -51,34 +53,23 @@ public class UserDaoImplUsingNamedParameterJdbcTemplate implements UserDao {
 
   @Override
   public List<User> listUsers(int offset, int count) {
-    // 파마미터로 Map을 사용
-    Map<String, Object> params = new HashMap<>();
-    params.put("offset", offset);
-    params.put("count", count);
-    return namedParameterJdbcTemplate.query(LIST_USERS, params, rowMapper);
+    return jdbcTemplate.query(LIST_USERS, rowMapper, offset, count);
   }
 
   @Override
   public User login(String email, String password) {
-    Map<String, Object> params = new HashMap<>();
-    params.put("email", email);
-    params.put("password", password);
-    return namedParameterJdbcTemplate.queryForObject(LOGIN, params, rowMapper);
+    return jdbcTemplate.queryForObject(LOGIN, rowMapper, email, password);
   }
 
   @Override
   public User getUser(int userId) {
-    // 파라미터로 MapSqlParameterSource를 사용
-    SqlParameterSource params = new MapSqlParameterSource("userId", userId);
-    return namedParameterJdbcTemplate
-        .queryForObject(GET_USER, params, rowMapper);
+    return jdbcTemplate.queryForObject(GET_USER, rowMapper, userId);
   }
 
   @Override
   public void addUser(User user) {
-    // 파라미터로 BeanPropertySqlParameterSource를 사용
-    SqlParameterSource params = new BeanPropertySqlParameterSource(user);
-    namedParameterJdbcTemplate.update(ADD_USER, params);
+    namedParameterJdbcTemplate
+        .update(ADD_USER, new BeanPropertySqlParameterSource(user));
   }
 
   @Override
@@ -92,9 +83,9 @@ public class UserDaoImplUsingNamedParameterJdbcTemplate implements UserDao {
   @Override
   public int updatePassword(int userId, String password, String newPassword) {
     Map<String, Object> params = new HashMap<>();
-    params.put("newPassword", newPassword);
     params.put("userId", userId);
     params.put("password", password);
+    params.put("newPassword", newPassword);
     return namedParameterJdbcTemplate.update(UPDATE_PASSWORD, params);
   }
 }

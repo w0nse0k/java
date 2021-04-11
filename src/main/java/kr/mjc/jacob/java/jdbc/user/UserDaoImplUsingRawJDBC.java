@@ -142,13 +142,12 @@ public class UserDaoImplUsingRawJDBC implements UserDao {
   }
 
   @Override
-  public int updatePassword(int userId, String oldPassword,
-                            String newPassword) {
+  public int updatePassword(int userId, String password, String newPassword) {
     try (Connection con = dataSource.getConnection();
          PreparedStatement ps = con.prepareStatement(UPDATE_PASSWORD)) {
       ps.setString(1, newPassword);
       ps.setInt(2, userId);
-      ps.setString(3, oldPassword);
+      ps.setString(3, password);
       return ps.executeUpdate();
     } catch (SQLException e) {
       // unchecked exception으로 바꿔서 던진다.

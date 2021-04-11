@@ -23,8 +23,8 @@ public class ListOfStudentEx {
   }
 
   public void read() throws Exception {
-    try (Scanner sc = new Scanner(
-        new File("src/main/resources/students.txt"))) {
+    try (
+        Scanner sc = new Scanner(new File("src/main/resources/students.txt"))) {
 
       while (sc.hasNextLine()) {
         Student student = new Student(sc.nextLine());

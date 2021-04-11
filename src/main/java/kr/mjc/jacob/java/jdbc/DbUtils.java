@@ -10,7 +10,7 @@ import java.util.List;
 
 public class DbUtils {
 
-  DataSource dataSource;
+  private DataSource dataSource;
 
   /**
    * 데이터베이스 쿼리를 실행하는 helper 클래스

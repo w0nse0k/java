@@ -13,7 +13,7 @@ public class ListUsersEx {
         "applicationContext-user.xml");
 
     UserDao userDao = context.getBean("userDao", UserDao.class);
-    List<User> userList = userDao.listUsers(0, 10);
+    List<User> userList = userDao.listUsers(0, 100);
     for (User user : userList) {
       System.out.println(user);
     }

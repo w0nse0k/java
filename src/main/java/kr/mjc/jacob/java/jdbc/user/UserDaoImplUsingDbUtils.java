@@ -80,8 +80,7 @@ public class UserDaoImplUsingDbUtils implements UserDao {
   }
 
   @Override
-  public int updatePassword(int userId, String oldPassword,
-                            String newPassword) {
-    return dbUtils.update(UPDATE_PASSWORD, newPassword, userId, oldPassword);
+  public int updatePassword(int userId, String password, String newPassword) {
+    return dbUtils.update(UPDATE_PASSWORD, newPassword, userId, password);
   }
 }

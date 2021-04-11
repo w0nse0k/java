@@ -14,8 +14,8 @@ public class TVUserUsingJavaBasedConfiguration {
   public static void main(String[] args) {
 
     // @Configuration 클래스의 @Bean으로 정의된 빈들을 모두 생성해서 context에 넣는다.
-    ApplicationContext context =
-        new AnnotationConfigApplicationContext(AppConfig.class);
+    ApplicationContext context = new AnnotationConfigApplicationContext(
+        AppConfig.class);
 
     TV samsungTV = context.getBean(SamsungTV.class);
     samsungTV.powerOn();

@@ -5,7 +5,6 @@ import kr.mjc.jacob.spring.day1.class02.SamsungTV;
 import kr.mjc.jacob.spring.day1.class02.TV;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * p.53을 component scan으로 수정

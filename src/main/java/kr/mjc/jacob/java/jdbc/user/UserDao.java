@@ -35,5 +35,5 @@ public interface UserDao {
   /**
    * 비밀번호 수정
    */
-  int updatePassword(int userId, String oldPassword, String newPassword);
+  int updatePassword(int userId, String password, String newPassword);
 }

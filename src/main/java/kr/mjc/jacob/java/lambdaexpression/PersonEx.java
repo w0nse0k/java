@@ -1,6 +1,7 @@
 package kr.mjc.jacob.java.lambdaexpression;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 참고 : https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html

@@ -23,17 +23,17 @@ public class AppConfig {
    * Constructor-based dependency injection
    */
   @Bean
-  public SamsungTV samsungTV(Speaker sonySpeaker) {
-    return new SamsungTV(sonySpeaker);
+  public SamsungTV samsungTV() {
+    return new SamsungTV(sonySpeaker());
   }
 
   /**
    * Setter-based dependency injection
    */
   @Bean
-  public LgTV lgTV(Speaker appleSpeaker) {
+  public LgTV lgTV() {
     LgTV lgTV = new LgTV();
-    lgTV.setSpeaker(appleSpeaker);
+    lgTV.setSpeaker(appleSpeaker());
     return lgTV;
   }
 }
