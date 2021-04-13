@@ -11,24 +11,23 @@ import java.util.Properties;
 
 public class ArticleDaoImpl implements ArticleDao {
 
-  private static final String LIST_ARTICLES =
-      "select articleId, title, userId, name, left(cdate,16) cdate " +
-          "from article order by articleId desc limit ?,?";
+  private static final String LIST_ARTICLES = """
+      select articleId, title, userId, name, left(cdate,16) cdate
+      from article order by articleId desc limit ?,?""";
 
-  private static final String GET_ARTICLE =
-      "select articleId, title, content, userId, name, " +
-          "left(cdate,16) cdate, left(udate,16) udate " +
-          "from article where articleId=?";
+  private static final String GET_ARTICLE = """
+      select articleId, title, content, userId, name, left(cdate,16) cdate, left(udate,16) udate
+      from article where articleId=?""";
 
-  private static final String ADD_ARTICLE
-      = "insert article(title, content, userId, name) values(?,?,?,?)";
+  private static final String ADD_ARTICLE =
+      "insert article(title, content, userId, name) values(?,?,?,?)";
 
-  private static final String UPDATE_ARTICLE =
-      "update article set title=?, content=? " +
-          "where articleId=? and userId=?";
+  private static final String UPDATE_ARTICLE = """
+      update article set title=?, content=?
+      where articleId=? and userId=?""";
 
-  private static final String DELETE_ARTICLE
-      = "delete from article where articleId=? and userId=?";
+  private static final String DELETE_ARTICLE =
+      "delete from article where articleId=? and userId=?";
 
   private DbUtils dbUtils;
 
@@ -37,8 +36,8 @@ public class ArticleDaoImpl implements ArticleDao {
     try (InputStream in = getClass().getClassLoader()
         .getResourceAsStream("db.properties")) { // 클래스패스에서 읽음
       props.load(in);
-      DataSource dataSource = new MariaDbDataSource(
-          props.getProperty("db.url"));
+      DataSource dataSource =
+          new MariaDbDataSource(props.getProperty("db.url"));
       dbUtils = new DbUtils(dataSource);
     } catch (IOException e) {
       e.printStackTrace();
