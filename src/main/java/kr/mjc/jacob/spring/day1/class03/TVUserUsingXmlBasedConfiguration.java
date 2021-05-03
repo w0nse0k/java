@@ -14,8 +14,8 @@ public class TVUserUsingXmlBasedConfiguration {
   public static void main(String[] args) {
 
     // xml의 <bean ...>으로 정의되어 있는 빈들을 모두 미리 생성해서 context에 넣는다.
-    ApplicationContext context = new ClassPathXmlApplicationContext(
-        "applicationContext03.xml");
+    ApplicationContext context =
+        new ClassPathXmlApplicationContext("applicationContext03.xml");
 
     // by-name lookup. 이름으로 찾는다.
     // 빨리 찾는다. id를 잘못쓰면 런타임에 에러가 날 수 있다.

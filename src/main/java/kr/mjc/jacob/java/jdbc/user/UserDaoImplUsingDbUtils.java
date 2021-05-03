@@ -12,23 +12,23 @@ import java.util.Properties;
 
 public class UserDaoImplUsingDbUtils implements UserDao {
 
-  private static final String LIST_USERS
-      = "select userId, email, name from user order by userId desc limit ?,?";
+  private static final String LIST_USERS =
+      "select userId, email, name from user order by userId desc limit ?,?";
 
-  private static final String ADD_USER
-      = "insert user(email, password, name) values(?, sha2(?,256), ?)";
+  private static final String ADD_USER =
+      "insert user(email, password, name) values(?, sha2(?,256), ?)";
 
-  private static final String LOGIN
-      = "select userId, email, name from user where (email, password) = (?, sha2(?,256))";
+  private static final String LOGIN =
+      "select userId, email, name from user where (email, password) = (?, sha2(?,256))";
 
-  private static final String GET_USER
-      = "select userId, email, name from user where userId=?";
+  private static final String GET_USER =
+      "select userId, email, name from user where userId=?";
 
-  private static final String UPDATE_EMAIL
-      = "update user set email=? where userId=?";
+  private static final String UPDATE_EMAIL =
+      "update user set email=? where userId=?";
 
-  private static final String UPDATE_PASSWORD
-      = "update user set password=sha2(?,256) where userId=? and password=sha2(?,256)";
+  private static final String UPDATE_PASSWORD =
+      "update user set password=sha2(?,256) where userId=? and password=sha2(?,256)";
   ResultSetHandler<User> h = (rs) -> {
     User user = new User();
     user.setUserId(rs.getInt("userId"));
@@ -43,8 +43,8 @@ public class UserDaoImplUsingDbUtils implements UserDao {
     try (InputStream in = getClass().getClassLoader()
         .getResourceAsStream("db.properties")) { // 클래스패스에서 읽음
       props.load(in);
-      DataSource dataSource = new MariaDbDataSource(
-          props.getProperty("db.url"));
+      DataSource dataSource =
+          new MariaDbDataSource(props.getProperty("db.url"));
       dbUtils = new DbUtils(dataSource);
     } catch (IOException e) {
       e.printStackTrace();

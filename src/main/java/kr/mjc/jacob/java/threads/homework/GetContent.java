@@ -13,9 +13,9 @@ import java.util.concurrent.Executors;
  */
 public class GetContent {
 
-  final String[] SITES = {"google.com", "youtube.com", "facebook.com",
-      "instagram.com", "netflix.com", "twitter.com", "wikipedia.org",
-      "imdb.com"};
+  final String[] SITES =
+      {"google.com", "youtube.com", "facebook.com", "instagram.com",
+          "netflix.com", "twitter.com", "wikipedia.org", "imdb.com"};
 
   public static void main(String[] args) {
     new GetContent().come();

@@ -8,8 +8,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class AddUserEx {
   public static void main(String[] args) {
-    ApplicationContext context = new ClassPathXmlApplicationContext(
-        "applicationContext-user.xml");
+    ApplicationContext context =
+        new ClassPathXmlApplicationContext("applicationContext-user.xml");
     UserDao userDao = context.getBean("userDao", UserDao.class);
 
     User user = new User();

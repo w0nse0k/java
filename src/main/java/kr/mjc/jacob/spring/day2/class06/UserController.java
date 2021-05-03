@@ -27,8 +27,8 @@ public class UserController {
   }
 
   public static void main(String[] args) {
-    ApplicationContext context = new AnnotationConfigApplicationContext(
-        AppConfig.class);
+    ApplicationContext context =
+        new AnnotationConfigApplicationContext(AppConfig.class);
     UserController userController = context.getBean(UserController.class);
     System.out.print(
         "Select method (1:list, 2:get, 3:login, 4:add, 5:updatePassword, 6:updateEmail) : ");

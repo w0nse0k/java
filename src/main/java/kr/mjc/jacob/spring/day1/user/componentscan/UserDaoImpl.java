@@ -12,23 +12,23 @@ import java.util.List;
 @Component("userDao")
 public class UserDaoImpl implements UserDao {
 
-  private static final String LIST_USERS
-      = "select userId, email, name from user order by userId desc limit ?,?";
+  private static final String LIST_USERS =
+      "select userId, email, name from user order by userId desc limit ?,?";
 
-  private static final String ADD_USER
-      = "insert user(email, password, name) values(?, sha2(?,256), ?)";
+  private static final String ADD_USER =
+      "insert user(email, password, name) values(?, sha2(?,256), ?)";
 
-  private static final String LOGIN
-      = "select userId, email, name from user where (email, password) = (?, sha2(?,256))";
+  private static final String LOGIN =
+      "select userId, email, name from user where (email, password) = (?, sha2(?,256))";
 
-  private static final String GET_USER
-      = "select userId, email, name from user where userId=?";
+  private static final String GET_USER =
+      "select userId, email, name from user where userId=?";
 
-  private static final String UPDATE_EMAIL
-      = "update user set email=? where userId=?";
+  private static final String UPDATE_EMAIL =
+      "update user set email=? where userId=?";
 
-  private static final String UPDATE_PASSWORD
-      = "update user set password=sha2(?,256) where userId=? and password=sha2(?,256)";
+  private static final String UPDATE_PASSWORD =
+      "update user set password=sha2(?,256) where userId=? and password=sha2(?,256)";
   ResultSetHandler<User> h = (rs) -> {
     User user = new User();
     user.setUserId(rs.getInt("userId"));

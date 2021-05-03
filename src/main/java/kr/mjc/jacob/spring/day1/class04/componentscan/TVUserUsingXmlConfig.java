@@ -8,8 +8,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TVUserUsingXmlConfig {
 
   public static void main(String[] args) {
-    ApplicationContext context = new ClassPathXmlApplicationContext(
-        "applicationContext04-cs.xml");
+    ApplicationContext context =
+        new ClassPathXmlApplicationContext("applicationContext04-cs.xml");
 
     TV samsungTV = context.getBean(SamsungTV.class);
     samsungTV.volumeUp();

@@ -11,7 +11,8 @@ import java.util.List;
 @Slf4j
 public class ListArticleEx {
   public static void main(String[] args) {
-    ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+    ApplicationContext context =
+        new AnnotationConfigApplicationContext(AppConfig.class);
     ArticleDao articleDao = context.getBean(ArticleDao.class);
     List<Article> articleList = articleDao.listArticles(0, 100);
     for (Article article : articleList) {

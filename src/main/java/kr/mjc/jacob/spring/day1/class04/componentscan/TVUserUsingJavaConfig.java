@@ -7,8 +7,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class TVUserUsingJavaConfig {
 
   public static void main(String[] args) {
-    ApplicationContext context = new AnnotationConfigApplicationContext(
-        AppConfig.class);
+    ApplicationContext context =
+        new AnnotationConfigApplicationContext(AppConfig.class);
 
     TV samsungTV = context.getBean(SamsungTV.class);
     samsungTV.volumeUp();

@@ -15,7 +15,7 @@ public class SamsungTV implements TV {
 
   /**
    * speaker를 주입하는 컨스트럭터
-   *
+   * <p>
    * Qualifier annotation은 같은 타입이 두 개 이상일 때
    */
   @Autowired

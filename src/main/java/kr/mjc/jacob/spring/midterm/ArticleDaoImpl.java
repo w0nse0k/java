@@ -38,10 +38,12 @@ public class ArticleDaoImpl implements ArticleDao {
 
   private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-  private RowMapper<Article> rowMapper = new BeanPropertyRowMapper<>(Article.class);
+  private RowMapper<Article> rowMapper =
+      new BeanPropertyRowMapper<>(Article.class);
 
   @Autowired
-  public ArticleDaoImpl(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+  public ArticleDaoImpl(JdbcTemplate jdbcTemplate,
+                        NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
     this.jdbcTemplate = jdbcTemplate;
     this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
   }
